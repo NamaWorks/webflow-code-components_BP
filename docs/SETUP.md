@@ -88,9 +88,9 @@ TypeScript configuration for the project. Key settings:
 
 ---
 
-### `.eslintrc.json`
+### `eslint.config.js`
 
-ESLint rules for TypeScript + React. Key rules:
+ESLint v9 flat config for TypeScript + React. Key rules:
 
 | Rule | Setting | Why |
 |---|---|---|
@@ -116,18 +116,15 @@ Formatting settings applied by `pnpm format` and enforced on push:
 
 ---
 
-### `.husky/pre-push`
+### Lint and format enforcement
 
-Git hook that runs before every `git push`. Blocks the push if either check fails:
+Lint and formatting are enforced by GitHub Actions on every PR — both `pnpm lint` and `pnpm format:check` must pass before a PR can merge. Run them locally before pushing to catch issues early:
 
 ```sh
 pnpm lint         # ESLint across all .ts and .tsx files
 pnpm format:check # Prettier check (read-only, does not auto-fix)
+pnpm format       # Auto-fix formatting issues
 ```
-
-If the push is blocked, fix the errors and push again. To auto-fix formatting locally before pushing: `pnpm format`.
-
-> Husky hooks are installed by `pnpm install` via the `"prepare": "husky"` script in `package.json`. If hooks are not running, verify that `pnpm install` was run after cloning.
 
 ---
 
@@ -224,7 +221,7 @@ On merge to `main`, GitHub Actions runs:
 npx webflow library share --no-input
 ```
 
-Using `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` from GitHub repository secrets. See the CI/CD Setup section in `README.md` for configuration steps.
+Using `WEBFLOW_WORKSPACE_API_TOKEN` from GitHub repository secrets. See the CI/CD Setup section in `README.md` for configuration steps.
 
 ---
 
@@ -233,7 +230,7 @@ Using `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` from GitHu
 1. Click **"Use this template"** on GitHub (or clone and remove the remote)
 2. Update `library.name` in `webflow.json`
 3. Run `pnpm install`
-4. Add `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` to `.env` (copy from `.env.example`)
+4. Add `WEBFLOW_WORKSPACE_API_TOKEN` to `.env` (copy from `.env.example`)
 5. Add the same secrets to GitHub repository settings
 6. Enable branch protection on `main` and `dev` (see `README.md`)
 7. Run `pnpm storybook` to verify the dev environment

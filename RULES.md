@@ -149,15 +149,16 @@ src/components/<ComponentName>/
 
 ## CI Pipeline Reference
 
-### `ci.yml` — runs on every pull request to `main`
+### `ci.yml` — runs on every pull request to `dev` or `main`
 
 1. Checkout code
 2. Set up Node 20
 3. `pnpm install --frozen-lockfile`
 4. `pnpm lint` — fails on any ESLint error
-5. `pnpm test` — fails if any Jest test fails
-6. `pnpm cypress:run` — fails if any Cypress spec fails
-7. All steps must pass for the PR to be mergeable
+5. `pnpm format:check` — fails if any file is not Prettier-formatted
+6. `pnpm test` — fails if any Jest test fails
+7. `pnpm cypress:run` — fails if any Cypress spec fails
+8. All steps must pass for the PR to be mergeable
 
 ### `deploy.yml` — runs on push to `main`
 
@@ -174,7 +175,6 @@ src/components/<ComponentName>/
 | `.github/workflows/*.yml` | CI/CD pipeline — changes affect the whole team and break deployments |
 | `plop/component/` | Generator templates — changes affect all future components scaffolded |
 | `webflow.json` | Webflow CLI configuration — incorrect changes break publishing (components glob, globals path, bundleConfig) |
-| `.husky/` | Git hook configuration |
 | `tsconfig.json` | TypeScript config — changes cascade to all components |
 | `src/index.ts` | Library barrel export — must stay in sync with all components |
 

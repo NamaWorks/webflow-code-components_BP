@@ -18,13 +18,17 @@ This boilerplate gives you:
 - An `ExampleButton` component demonstrating the full pattern
 - Unit tests (Jest) and integration tests (Cypress component mode)
 - Visual component preview with Storybook
-- Code quality enforcement via ESLint, Prettier, and Husky
+- Code quality enforcement via ESLint, Prettier, and GitHub Actions
 - A component scaffolding generator (`pnpm new-component`)
 - A complete CI/CD pipeline with GitHub Actions
 
 **What this is not:** this is not an npm package or a library to install. It is a GitHub Template Repository — clone it once per Webflow project, then build your components inside it.
 
 **Bundling:** The Webflow CLI handles bundling internally via Webpack. You do not need to configure your own bundler for component code.
+
+For a full walkthrough, see the `docs/` folder:
+- [`docs/GETTING_STARTED.md`](docs/GETTING_STARTED.md) — step-by-step guide: setup, creating components, commits/branches, CI/CD
+- [`docs/SETUP.md`](docs/SETUP.md) — technical reference for config files and project structure
 
 ---
 
@@ -102,14 +106,17 @@ Copy `.env.example` to `.env` and populate the following:
 │   └── workflows/
 │       ├── ci.yml                         # Runs on PR: lint → Jest → Cypress
 │       └── deploy.yml                     # Runs on merge to main: tests → devlink publish
+├── docs/
+│   ├── GETTING_STARTED.md                 # Step-by-step guide: setup, components, workflow, CI/CD
+│   └── SETUP.md                           # Technical reference for config files and project structure
 ├── plop/
 │   └── component/                         # Handlebars templates for new-component generator
 ├── .env.example                           # Environment variable template (commit this, not .env)
 ├── .gitignore
-├── .eslintrc.json
+├── .prettierignore
+├── eslint.config.js                       # ESLint v9 flat config
 ├── .prettierrc
-├── .nvmrc                                 # Pins Node version to 20 LTS
-├── webflow.json                           # Webflow CLI configuration (components glob, globals, bundleConfig)
+├── webflow.json                           # Webflow CLI configuration (components glob, globals)
 ├── postcss.config.mjs                     # PostCSS config for Tailwind CSS
 ├── plopfile.js                            # Component generator definition
 ├── package.json
@@ -189,7 +196,7 @@ pnpm lint     # Run ESLint across the project
 pnpm format   # Run Prettier across the project
 ```
 
-Both run automatically via Husky on staged files before every commit. **A lint or format error blocks the commit.** Fix the error, or run `pnpm format` to auto-fix formatting issues before committing again.
+Both are enforced by GitHub Actions on every PR — a lint or format error will block the PR from merging. Run them locally before pushing to catch issues early.
 
 ---
 

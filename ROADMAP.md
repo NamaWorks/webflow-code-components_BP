@@ -31,10 +31,9 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 - [ ] Install ESLint with TypeScript and React plugins; create `.eslintrc.json`
 - [ ] Install Prettier; create `.prettierrc`
 - [ ] Add `pnpm lint` and `pnpm format` scripts
-- [ ] Install Husky and lint-staged; configure pre-commit hook to run lint-staged on staged files
-- [ ] Verify: committing a file with a lint error is blocked
+- [ ] Verify lint and format run cleanly locally (`pnpm lint` and `pnpm format:check`)
 
-**Deliverables:** Component publishable to Webflow via `pnpm deploy` (`npx webflow library share`). Lint enforced on commit.
+**Deliverables:** Component publishable to Webflow via `pnpm deploy` (`npx webflow library share`). Lint enforced via GitHub Actions CI.
 
 ---
 
