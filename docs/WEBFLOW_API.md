@@ -41,7 +41,7 @@ curl https://api.webflow.com/v2/sites \
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
-This is the same token used by the Webflow CLI (`WEBFLOW_WORKSPACE_API_TOKEN` in `.env`).
+This is the same token used by the Webflow CLI (`WEBFLOW_API_TOKEN` in `.env`).
 
 ### OAuth 2.0 (for apps)
 
@@ -85,7 +85,7 @@ Example — list CMS items:
 ```ts
 import { WebflowClient } from 'webflow-api';
 
-const webflow = new WebflowClient({ accessToken: process.env.WEBFLOW_WORKSPACE_API_TOKEN });
+const webflow = new WebflowClient({ accessToken: process.env.WEBFLOW_API_TOKEN });
 
 const items = await webflow.collections.items.list(COLLECTION_ID);
 ```
@@ -139,7 +139,7 @@ If you add API calls to a backend that lives alongside this repo, extend `.env.e
 
 ```
 # Webflow CLI — required for pnpm deploy
-WEBFLOW_WORKSPACE_API_TOKEN=your_token_here
+WEBFLOW_API_TOKEN=your_token_here
 
 # Webflow OAuth App — only needed if building a Data Client app
 WEBFLOW_CLIENT_ID=your_client_id

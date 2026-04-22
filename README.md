@@ -76,11 +76,11 @@ Copy `.env.example` to `.env` and populate the following:
 
 | Variable                      | Required | Description                                                                        |
 | ----------------------------- | -------- | ---------------------------------------------------------------------------------- |
-| `WEBFLOW_WORKSPACE_API_TOKEN` | Yes      | Workspace API token — found in Webflow Dashboard → Workspace Settings → API Access |
+| `WEBFLOW_API_TOKEN` | Yes      | Workspace API token — found in Webflow Dashboard → Workspace Settings → API Access |
 
 > **Never commit `.env`** — it is listed in `.gitignore`. Only `.env.example` (with a placeholder value) should be committed.
 
-> The CLI reads `WEBFLOW_WORKSPACE_API_TOKEN` automatically from your `.env` file, or you can pass it directly with `--api-token`. See the [Webflow CLI docs](https://developers.webflow.com/code-components/reference/cli).
+> The CLI reads `WEBFLOW_API_TOKEN` automatically from your `.env` file, or you can pass it directly with `--api-token`. See the [Webflow CLI docs](https://developers.webflow.com/code-components/reference/cli).
 
 ---
 
@@ -219,7 +219,7 @@ Test files live at `src/components/<Name>/<Name>.test.tsx`. Uses React Testing L
 ### Local
 
 ```bash
-pnpm deploy
+pnpm webflow:share
 ```
 
 Runs `npx webflow library share` using your local credentials. After a successful run, your components appear in the Webflow Designer under Libraries. Ensure you are authenticated with the Webflow CLI before running this command.
@@ -256,7 +256,7 @@ Go to **Settings → Secrets and variables → Actions** and add:
 
 | Secret name                   | Value                            |
 | ----------------------------- | -------------------------------- |
-| `WEBFLOW_WORKSPACE_API_TOKEN` | Your Webflow Workspace API token |
+| `WEBFLOW_API_TOKEN` | Your Webflow Workspace API token |
 
 ### 3. Enable branch protection
 
@@ -295,7 +295,7 @@ Feature and fix branches always target `dev`. Only `dev` merges into `main`. See
 **`deploy.yml`** — triggers on push to `main` only:
 
 1. Same steps as `ci.yml`
-2. Run `npx webflow library share --no-input` with `WEBFLOW_WORKSPACE_API_TOKEN` injected from GitHub Secrets via `--api-token`
+2. Run `npx webflow library share --no-input` with `WEBFLOW_API_TOKEN` injected from GitHub Secrets via `--api-token`
 3. If any step fails, the workflow is marked as failed and GitHub sends a notification to the commit author
 
 ---
