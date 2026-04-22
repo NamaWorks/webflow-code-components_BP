@@ -30,6 +30,7 @@ For a full walkthrough, see the `docs/` folder:
 
 - [`docs/GETTING_STARTED.md`](docs/GETTING_STARTED.md) — step-by-step guide: setup, creating components, commits/branches, CI/CD
 - [`docs/SETUP.md`](docs/SETUP.md) — technical reference for config files and project structure
+- [`docs/WEBFLOW_API.md`](docs/WEBFLOW_API.md) — using the Webflow REST API alongside Code Components
 
 ---
 
