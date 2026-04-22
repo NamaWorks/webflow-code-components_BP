@@ -10,13 +10,15 @@ import { ExampleButton } from './ExampleButton';
 
 export default declareComponent(ExampleButton, {
   name: 'ExampleButton',
+  description: 'A simple button component',
+  group: 'Buttons',
+  options: {
+    ssr: true,
+  },
   props: {
     label: props.Text({
       name: 'Label',
       defaultValue: 'Click me',
     }),
-    // Note: verify the correct prop type for booleans in the Webflow docs.
-    // props.Toggle or similar may be available.
-    // https://developers.webflow.com/code-components/reference/prop-types
   },
 });

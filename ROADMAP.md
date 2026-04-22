@@ -133,6 +133,8 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 
 These are not planned but worth tracking as the project matures:
 
+- **Webflow REST API example** — add an `ExampleFetch` component that demonstrates the backend-proxy pattern for fetching Webflow CMS data at runtime (see `docs/WEBFLOW_API.md`)
+
 - **Storybook deployment** — publish Storybook as a static site (GitHub Pages, Vercel) for stakeholder review
 - **Visual regression testing** — add Chromatic or Percy to catch unintended visual changes
 - **Multi-site support** — allow a single repo to publish to multiple Webflow sites via environment profiles

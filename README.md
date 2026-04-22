@@ -30,6 +30,7 @@ For a full walkthrough, see the `docs/` folder:
 
 - [`docs/GETTING_STARTED.md`](docs/GETTING_STARTED.md) — step-by-step guide: setup, creating components, commits/branches, CI/CD
 - [`docs/SETUP.md`](docs/SETUP.md) — technical reference for config files and project structure
+- [`docs/WEBFLOW_API.md`](docs/WEBFLOW_API.md) — using the Webflow REST API alongside Code Components
 
 ---
 
@@ -222,6 +223,14 @@ pnpm deploy
 ```
 
 Runs `npx webflow library share` using your local credentials. After a successful run, your components appear in the Webflow Designer under Libraries. Ensure you are authenticated with the Webflow CLI before running this command.
+
+To inspect the bundle locally before publishing:
+
+```bash
+pnpm bundle
+```
+
+This generates a `dist/` folder and serves it at `http://localhost:4000/`. Useful for debugging bundle issues without uploading to Webflow.
 
 ### CI/CD (automatic)
 

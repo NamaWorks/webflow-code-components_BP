@@ -12,6 +12,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src/**/*", ".storybook/**/*"],
+  "include": ["src/**/*", ".storybook/**/*", "jest.setup.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,7 +1,15 @@
 {
   "library": {
-    "name": "My Component Library",
+    "name": "Test Library",
     "components": ["./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"],
-    "globals": "./src/globals.ts"
+    "globals": "/Users/nama/Desktop/webflow-code_components-boilerplate/src/globals.ts",
+    "description": "test"
+  },
+  "telemetry": {
+    "global": {
+      "allowTelemetry": true,
+      "lastPrompted": 1776900246821,
+      "version": "1.15.0"
+    }
   }
 }

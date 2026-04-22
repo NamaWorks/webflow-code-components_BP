@@ -25,6 +25,6 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['node_modules/', 'dist/', 'storybook-static/', 'pnpm-lock.yaml'],
+    ignores: ['node_modules/', 'dist/', 'storybook-static/', 'pnpm-lock.yaml', 'jest.config.js'],
   }
 );

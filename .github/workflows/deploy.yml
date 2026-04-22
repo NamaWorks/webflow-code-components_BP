@@ -32,5 +32,8 @@ jobs:
       - name: Format check
         run: pnpm format:check
 
+      - name: Test
+        run: pnpm test
+
       - name: Deploy to Webflow
         run: npx webflow library share --no-input --api-token ${{ secrets.WEBFLOW_WORKSPACE_API_TOKEN }}
