@@ -50,6 +50,7 @@ WEBFLOW_WORKSPACE_API_TOKEN=your_token_here
 **3. Add the token to GitHub Secrets** — go to your repo's **Settings → Secrets and variables → Actions** and add `WEBFLOW_WORKSPACE_API_TOKEN`.
 
 **4. Enable branch protection** — go to **Settings → Branches** and add rules for both `main` and `dev`:
+
 - Require status checks to pass before merging (select the `CI` check)
 - Require branches to be up to date before merging
 
@@ -82,6 +83,7 @@ pnpm new-component
 ```
 
 Answer the prompts:
+
 - **Component name** — PascalCase (e.g. `HeroCard`)
 - **Description** — short description used in file comments
 - **Has slots?** — yes if the component accepts Webflow child elements
@@ -199,16 +201,17 @@ All three must pass before opening a PR.
 
 ### Branch model
 
-| Branch | Purpose |
-|---|---|
-| `main` | Production — auto-deploys to Webflow on merge |
-| `dev` | Integration — all feature branches merge here first |
-| `feat/<name>` | New component |
-| `fix/<description>` | Bug fix |
-| `chore/<description>` | Tooling, config, dependencies |
-| `docs/<description>` | Documentation only |
+| Branch                | Purpose                                             |
+| --------------------- | --------------------------------------------------- |
+| `main`                | Production — auto-deploys to Webflow on merge       |
+| `dev`                 | Integration — all feature branches merge here first |
+| `feat/<name>`         | New component                                       |
+| `fix/<description>`   | Bug fix                                             |
+| `chore/<description>` | Tooling, config, dependencies                       |
+| `docs/<description>`  | Documentation only                                  |
 
 **Rules:**
+
 - Never push directly to `main` or `dev`
 - Always cut branches from `dev`, not `main`
 - One branch per component or concern
@@ -244,6 +247,7 @@ git push -u origin feat/hero-card
 ```
 
 Then open a PR on GitHub targeting **`dev`** (not `main`). Fill in:
+
 - What the component does
 - Any decisions worth noting
 - Screenshots or Storybook link if visual
@@ -278,13 +282,13 @@ feat/my-component
 
 ### `ci.yml` — runs on every PR to `dev` or `main`
 
-| Step | What it does | Fails on |
-|---|---|---|
-| Install | `pnpm install --frozen-lockfile` | Missing or broken dependencies |
-| Lint | `pnpm lint` | Any ESLint error |
-| Format | `pnpm format:check` | Any file not matching Prettier rules |
-| Test | `pnpm test` | Any failing Jest test |
-| Cypress | `pnpm cypress:run` | Any failing Cypress spec |
+| Step    | What it does                     | Fails on                             |
+| ------- | -------------------------------- | ------------------------------------ |
+| Install | `pnpm install --frozen-lockfile` | Missing or broken dependencies       |
+| Lint    | `pnpm lint`                      | Any ESLint error                     |
+| Format  | `pnpm format:check`              | Any file not matching Prettier rules |
+| Test    | `pnpm test`                      | Any failing Jest test                |
+| Cypress | `pnpm cypress:run`               | Any failing Cypress spec             |
 
 All steps must pass. If any fails, the PR is blocked from merging.
 
@@ -299,6 +303,7 @@ npx webflow library share --no-input --api-token $WEBFLOW_WORKSPACE_API_TOKEN
 This bundles all `*.webflow.tsx` components found by the glob in `webflow.json` and publishes them to your Webflow workspace as a shared library.
 
 **If the deploy fails:** the workflow is marked as failed and GitHub sends a notification to the commit author. Check the Actions tab for logs. Common causes:
+
 - Invalid or expired `WEBFLOW_WORKSPACE_API_TOKEN`
 - A component has a broken `declareComponent` declaration
 - Bundle size exceeds Webflow's 50MB limit

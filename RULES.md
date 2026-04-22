@@ -8,14 +8,14 @@ Project rules for contributors and AI coding agents. Read this before making any
 
 ### Branch model
 
-| Branch | Purpose | Protected | Deploys to Webflow |
-|---|---|---|---|
-| `main` | Production — source of truth | Yes | Yes, on every merge |
-| `dev` | Integration — all feature branches merge here first | Yes | No |
-| `feat/<name>` | New component or feature | No | No |
-| `fix/<description>` | Bug fix | No | No |
-| `chore/<description>` | Tooling, config, dependencies | No | No |
-| `docs/<description>` | Documentation only | No | No |
+| Branch                | Purpose                                             | Protected | Deploys to Webflow  |
+| --------------------- | --------------------------------------------------- | --------- | ------------------- |
+| `main`                | Production — source of truth                        | Yes       | Yes, on every merge |
+| `dev`                 | Integration — all feature branches merge here first | Yes       | No                  |
+| `feat/<name>`         | New component or feature                            | No        | No                  |
+| `fix/<description>`   | Bug fix                                             | No        | No                  |
+| `chore/<description>` | Tooling, config, dependencies                       | No        | No                  |
+| `docs/<description>`  | Documentation only                                  | No        | No                  |
 
 ### Rules
 
@@ -63,18 +63,18 @@ This is a Webflow Code Components project. Components are built in React + TypeS
 
 ## Key Commands
 
-| Command | What it does |
-|---|---|
-| `pnpm new-component` | Scaffold a new component with Plop (interactive prompts) |
-| `pnpm test` | Run all Jest unit/component tests |
-| `pnpm test -- --watch` | Jest watch mode |
-| `pnpm cypress:open` | Open Cypress GUI (component mode) |
-| `pnpm cypress:run` | Run Cypress headless (used in CI) |
-| `pnpm storybook` | Start Storybook dev server at localhost:6006 |
-| `pnpm build-storybook` | Build static Storybook output |
-| `pnpm lint` | Run ESLint |
-| `pnpm format` | Run Prettier |
-| `pnpm deploy` | Runs `npx webflow library share` — publish components to Webflow |
+| Command                | What it does                                                     |
+| ---------------------- | ---------------------------------------------------------------- |
+| `pnpm new-component`   | Scaffold a new component with Plop (interactive prompts)         |
+| `pnpm test`            | Run all Jest unit/component tests                                |
+| `pnpm test -- --watch` | Jest watch mode                                                  |
+| `pnpm cypress:open`    | Open Cypress GUI (component mode)                                |
+| `pnpm cypress:run`     | Run Cypress headless (used in CI)                                |
+| `pnpm storybook`       | Start Storybook dev server at localhost:6006                     |
+| `pnpm build-storybook` | Build static Storybook output                                    |
+| `pnpm lint`            | Run ESLint                                                       |
+| `pnpm format`          | Run Prettier                                                     |
+| `pnpm deploy`          | Runs `npx webflow library share` — publish components to Webflow |
 
 ---
 
@@ -92,6 +92,7 @@ src/components/<ComponentName>/
 ```
 
 **Rules:**
+
 - `<ComponentName>.tsx` must have zero imports from `@webflow/react`, `@webflow/data-types`, or any Webflow SDK package. Keep it pure React.
 - `<ComponentName>.webflow.tsx` is the only file that calls `declareComponent` (imported from `@webflow/react`) and uses `props` (imported from `@webflow/data-types`). Props mapped here must match the React component's `Props` interface exactly.
 - The Webflow CLI picks up `*.webflow.tsx` files via the glob in `webflow.json` — do not rename this file or change the extension.
@@ -103,15 +104,15 @@ src/components/<ComponentName>/
 
 ## Naming Conventions
 
-| Thing | Convention | Example |
-|---|---|---|
-| Component name | PascalCase | `HeroCard` |
-| Component folder | PascalCase | `src/components/HeroCard/` |
-| Props interface | `<Name>Props` | `HeroCardProps` |
-| Story file default export | Component meta object | `export default { title: 'HeroCard', component: HeroCard }` |
-| Story named exports | Descriptive, PascalCase | `export const Default`, `export const Disabled` |
-| Test file | One `describe` per component, `it` per behavior | `describe('HeroCard', () => { it('renders without crashing', ...) })` |
-| Cypress spec | `<Name>.cy.tsx` in `cypress/component/` | `HeroCard.cy.tsx` |
+| Thing                     | Convention                                      | Example                                                               |
+| ------------------------- | ----------------------------------------------- | --------------------------------------------------------------------- |
+| Component name            | PascalCase                                      | `HeroCard`                                                            |
+| Component folder          | PascalCase                                      | `src/components/HeroCard/`                                            |
+| Props interface           | `<Name>Props`                                   | `HeroCardProps`                                                       |
+| Story file default export | Component meta object                           | `export default { title: 'HeroCard', component: HeroCard }`           |
+| Story named exports       | Descriptive, PascalCase                         | `export const Default`, `export const Disabled`                       |
+| Test file                 | One `describe` per component, `it` per behavior | `describe('HeroCard', () => { it('renders without crashing', ...) })` |
+| Cypress spec              | `<Name>.cy.tsx` in `cypress/component/`         | `HeroCard.cy.tsx`                                                     |
 
 ---
 
@@ -170,13 +171,13 @@ src/components/<ComponentName>/
 
 ## Files to Never Modify Without Explicit Instruction
 
-| File / Directory | Why |
-|---|---|
-| `.github/workflows/*.yml` | CI/CD pipeline — changes affect the whole team and break deployments |
-| `plop/component/` | Generator templates — changes affect all future components scaffolded |
-| `webflow.json` | Webflow CLI configuration — incorrect changes break publishing (components glob, globals path, bundleConfig) |
-| `tsconfig.json` | TypeScript config — changes cascade to all components |
-| `src/index.ts` | Library barrel export — must stay in sync with all components |
+| File / Directory          | Why                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `.github/workflows/*.yml` | CI/CD pipeline — changes affect the whole team and break deployments                                         |
+| `plop/component/`         | Generator templates — changes affect all future components scaffolded                                        |
+| `webflow.json`            | Webflow CLI configuration — incorrect changes break publishing (components glob, globals path, bundleConfig) |
+| `tsconfig.json`           | TypeScript config — changes cascade to all components                                                        |
+| `src/index.ts`            | Library barrel export — must stay in sync with all components                                                |
 
 ---
 
@@ -202,6 +203,7 @@ src/components/<ComponentName>/
 `declareComponent` is the function from `@webflow/react` that registers a React component with the Webflow Designer. It lives in `<ComponentName>.webflow.tsx` — nowhere else. Prop type helpers come from `@webflow/data-types` (e.g. `props.Text`, `props.Variant`).
 
 It does three things:
+
 1. Wraps the React component
 2. Maps React props to Webflow Designer controls (text fields, toggles, dropdowns, color pickers)
 3. Optionally defines slots — content regions that accept Webflow child elements
@@ -241,15 +243,15 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/). Every commi
 
 ### Types
 
-| Type | When to use |
-|---|---|
-| `feat` | Adding a new component or new functionality |
-| `fix` | Bug fix in a component or configuration |
-| `docs` | Changes to README, RULES, ROADMAP, or inline comments |
-| `style` | Formatting, whitespace, Prettier — no logic change |
-| `refactor` | Code restructure with no behavior change |
-| `test` | Adding or updating tests (Jest or Cypress) |
-| `chore` | Tooling, dependencies, CI config, generator templates |
+| Type       | When to use                                           |
+| ---------- | ----------------------------------------------------- |
+| `feat`     | Adding a new component or new functionality           |
+| `fix`      | Bug fix in a component or configuration               |
+| `docs`     | Changes to README, RULES, ROADMAP, or inline comments |
+| `style`    | Formatting, whitespace, Prettier — no logic change    |
+| `refactor` | Code restructure with no behavior change              |
+| `test`     | Adding or updating tests (Jest or Cypress)            |
+| `chore`    | Tooling, dependencies, CI config, generator templates |
 
 ### Scope (optional but encouraged)
 
@@ -266,7 +268,7 @@ test(ExampleButton): add Cypress click interaction spec
 
 - **Subject line:** imperative mood, lowercase, no period — `add slot support` not `Added slot support.`
 - **Max length:** 72 characters for the subject line
-- **Body (optional):** use it to explain *why*, not *what* — the diff already shows what changed
+- **Body (optional):** use it to explain _why_, not _what_ — the diff already shows what changed
 - **Breaking changes:** add `!` after the type and explain in the body: `feat(ExampleButton)!: rename label prop to children`
 - **One concern per commit:** do not mix a component change with a CI fix in the same commit
 - **Never commit:**

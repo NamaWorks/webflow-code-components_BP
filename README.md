@@ -27,6 +27,7 @@ This boilerplate gives you:
 **Bundling:** The Webflow CLI handles bundling internally via Webpack. You do not need to configure your own bundler for component code.
 
 For a full walkthrough, see the `docs/` folder:
+
 - [`docs/GETTING_STARTED.md`](docs/GETTING_STARTED.md) — step-by-step guide: setup, creating components, commits/branches, CI/CD
 - [`docs/SETUP.md`](docs/SETUP.md) — technical reference for config files and project structure
 
@@ -72,9 +73,9 @@ Storybook opens at `http://localhost:6006`. If you see the `ExampleButton` stori
 
 Copy `.env.example` to `.env` and populate the following:
 
-| Variable | Required | Description |
-|---|---|---|
-| `WEBFLOW_WORKSPACE_API_TOKEN` | Yes | Workspace API token — found in Webflow Dashboard → Workspace Settings → API Access |
+| Variable                      | Required | Description                                                                        |
+| ----------------------------- | -------- | ---------------------------------------------------------------------------------- |
+| `WEBFLOW_WORKSPACE_API_TOKEN` | Yes      | Workspace API token — found in Webflow Dashboard → Workspace Settings → API Access |
 
 > **Never commit `.env`** — it is listed in `.gitignore`. Only `.env.example` (with a placeholder value) should be committed.
 
@@ -137,6 +138,7 @@ pnpm new-component
 ```
 
 Answer the prompts:
+
 - **Component name** (PascalCase, e.g. `HeroCard`)
 - **Description** (short, used in file comments)
 - **Has slots?** (yes/no — slots are Webflow content regions that accept child elements)
@@ -254,8 +256,8 @@ In your repository settings, check **Template repository** so others can use the
 
 Go to **Settings → Secrets and variables → Actions** and add:
 
-| Secret name | Value |
-|---|---|
+| Secret name                   | Value                            |
+| ----------------------------- | -------------------------------- |
 | `WEBFLOW_WORKSPACE_API_TOKEN` | Your Webflow Workspace API token |
 
 ### 3. Enable branch protection
@@ -268,6 +270,7 @@ Go to **Settings → Branches → Add rule** and apply the same settings to **bo
 - Check **Do not allow bypassing the above settings**
 
 For `main` only, also enable:
+
 - **Require a pull request before merging** (only `dev` → `main` PRs should reach here)
 
 ### Branch model
@@ -285,6 +288,7 @@ Feature and fix branches always target `dev`. Only `dev` merges into `main`. See
 ### How the workflows behave
 
 **`ci.yml`** — triggers on pull requests targeting `dev` or `main`:
+
 1. Install dependencies
 2. Run `pnpm lint`
 3. Run `pnpm test`
@@ -292,6 +296,7 @@ Feature and fix branches always target `dev`. Only `dev` merges into `main`. See
 5. All steps must pass — enforced as a required status check on both branches
 
 **`deploy.yml`** — triggers on push to `main` only:
+
 1. Same steps as `ci.yml`
 2. Run `npx webflow library share --no-input` with `WEBFLOW_WORKSPACE_API_TOKEN` injected from GitHub Secrets via `--api-token`
 3. If any step fails, the workflow is marked as failed and GitHub sends a notification to the commit author

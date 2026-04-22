@@ -34,11 +34,11 @@ The main configuration for the Webflow CLI.
 }
 ```
 
-| Field | What it does |
-|---|---|
-| `name` | The library name shown in the Webflow Designer. **Change this per project.** |
+| Field        | What it does                                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| `name`       | The library name shown in the Webflow Designer. **Change this per project.**                                 |
 | `components` | Glob that tells the CLI which files to bundle. Any `*.webflow.tsx` file in `src/` is automatically included. |
-| `globals` | Entry point for global styles and decorators. This is where Tailwind CSS is loaded. |
+| `globals`    | Entry point for global styles and decorators. This is where Tailwind CSS is loaded.                          |
 
 > When starting a new project from this boilerplate, the first thing to change is `library.name` in `webflow.json`.
 
@@ -78,13 +78,13 @@ No changes needed here unless you add other PostCSS plugins (e.g. autoprefixer).
 
 TypeScript configuration for the project. Key settings:
 
-| Option | Value | Why |
-|---|---|---|
-| `strict` | `true` | Enforces full type safety — do not relax this |
-| `jsx` | `react-jsx` | Enables JSX without importing React in every file |
-| `moduleResolution` | `bundler` | Modern resolution compatible with the Webflow CLI's internal Webpack |
-| `noUnusedLocals` | `true` | Keeps code clean — unused imports are a compile error |
-| `noUnusedParameters` | `true` | Same for function parameters |
+| Option               | Value       | Why                                                                  |
+| -------------------- | ----------- | -------------------------------------------------------------------- |
+| `strict`             | `true`      | Enforces full type safety — do not relax this                        |
+| `jsx`                | `react-jsx` | Enables JSX without importing React in every file                    |
+| `moduleResolution`   | `bundler`   | Modern resolution compatible with the Webflow CLI's internal Webpack |
+| `noUnusedLocals`     | `true`      | Keeps code clean — unused imports are a compile error                |
+| `noUnusedParameters` | `true`      | Same for function parameters                                         |
 
 ---
 
@@ -92,11 +92,11 @@ TypeScript configuration for the project. Key settings:
 
 ESLint v9 flat config for TypeScript + React. Key rules:
 
-| Rule | Setting | Why |
-|---|---|---|
+| Rule                                 | Setting | Why                                      |
+| ------------------------------------ | ------- | ---------------------------------------- |
 | `@typescript-eslint/no-explicit-any` | `error` | Forces proper typing — no escape hatches |
-| `react/react-in-jsx-scope` | `off` | Not needed with `react-jsx` transform |
-| `@typescript-eslint/no-unused-vars` | `error` | Keeps components clean |
+| `react/react-in-jsx-scope`           | `off`   | Not needed with `react-jsx` transform    |
+| `@typescript-eslint/no-unused-vars`  | `error` | Keeps components clean                   |
 
 ---
 
@@ -178,9 +178,9 @@ export default declareComponent(ExampleButton, {
 
 Prop type helpers from `@webflow/data-types`:
 
-| Helper | Designer control |
-|---|---|
-| `props.Text(...)` | Text input |
+| Helper               | Designer control            |
+| -------------------- | --------------------------- |
+| `props.Text(...)`    | Text input                  |
 | `props.Variant(...)` | Dropdown with fixed options |
 
 For the full list, see the [Webflow prop types reference](https://developers.webflow.com/code-components/reference/prop-types).
