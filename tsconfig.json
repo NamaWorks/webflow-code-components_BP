@@ -13,5 +13,5 @@
     "noUnusedParameters": true
   },
   "include": ["src/**/*", ".storybook/**/*"],
-  "exclude": ["node_modules", "dist", "cypress"]
+  "exclude": ["node_modules", "dist"]
 }

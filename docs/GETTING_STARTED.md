@@ -272,7 +272,7 @@ When `dev` is stable and ready to deploy:
 ```
 feat/my-component
   └── PR to dev
-        └── ci.yml runs → lint, format, test, cypress
+        └── ci.yml runs → lint, format, test
              └── merge to dev
                   └── PR to main
                         └── ci.yml runs again
@@ -288,7 +288,6 @@ feat/my-component
 | Lint    | `pnpm lint`                      | Any ESLint error                     |
 | Format  | `pnpm format:check`              | Any file not matching Prettier rules |
 | Test    | `pnpm test`                      | Any failing Jest test                |
-| Cypress | `pnpm cypress:run`               | Any failing Cypress spec             |
 
 All steps must pass. If any fails, the PR is blocked from merging.
 
@@ -316,7 +315,6 @@ Before pushing, run the same checks CI will run:
 pnpm lint          # ESLint
 pnpm format:check  # Prettier
 pnpm test          # Jest
-pnpm cypress:run   # Cypress (headless)
 ```
 
 To auto-fix formatting:

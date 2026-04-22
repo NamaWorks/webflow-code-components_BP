@@ -16,7 +16,7 @@ This boilerplate gives you:
 
 - A pre-wired React + TypeScript project structure
 - An `ExampleButton` component demonstrating the full pattern
-- Unit tests (Jest) and integration tests (Cypress component mode)
+- Unit and component tests (Jest)
 - Visual component preview with Storybook
 - Code quality enforcement via ESLint, Prettier, and GitHub Actions
 - A component scaffolding generator (`pnpm new-component`)
@@ -98,14 +98,12 @@ Copy `.env.example` to `.env` and populate the following:
 │   ├── globals.ts                                 # Webflow globals entry — imports globals.css
 │   ├── globals.css                                # Tailwind CSS import (@import "tailwindcss")
 │   └── index.ts                                   # Barrel export for the entire library
-├── cypress/
-│   └── component/                         # Cypress component test specs
 ├── .storybook/
 │   ├── main.ts                            # Storybook configuration (Vite framework)
 │   └── preview.ts                         # Global decorators and parameters
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml                         # Runs on PR: lint → Jest → Cypress
+│       ├── ci.yml                         # Runs on PR: lint → Jest
 │       └── deploy.yml                     # Runs on merge to main: tests → devlink publish
 ├── docs/
 │   ├── GETTING_STARTED.md                 # Step-by-step guide: setup, components, workflow, CI/CD
@@ -213,15 +211,6 @@ pnpm test -- --watch   # Watch mode for active development
 
 Test files live at `src/components/<Name>/<Name>.test.tsx`. Uses React Testing Library. Every component must have a test file before a PR can merge.
 
-### Integration Tests — Cypress (Component Mode)
-
-```bash
-pnpm cypress:open   # Open Cypress GUI (for local development)
-pnpm cypress:run    # Run Cypress headless (used in CI)
-```
-
-Cypress runs in **component testing mode** — it mounts components directly in a real browser without needing a running app server. Specs live in `cypress/component/`. Use Cypress for interaction and behavior tests that benefit from a real browser environment. Do not duplicate what Jest already covers.
-
 ---
 
 ## Publishing to Webflow
@@ -238,7 +227,7 @@ Runs `npx webflow library share` using your local credentials. After a successfu
 
 On every merge to `main`, the `deploy.yml` workflow automatically:
 
-1. Runs lint, Jest, and Cypress (same checks as a PR)
+1. Runs lint and Jest (same checks as a PR)
 2. Runs `pnpm deploy` using secrets stored in the GitHub repository
 3. If the publish fails, the workflow fails and GitHub sends a failure notification to the commit author
 
@@ -292,8 +281,7 @@ Feature and fix branches always target `dev`. Only `dev` merges into `main`. See
 1. Install dependencies
 2. Run `pnpm lint`
 3. Run `pnpm test`
-4. Run `pnpm cypress:run`
-5. All steps must pass — enforced as a required status check on both branches
+4. All steps must pass — enforced as a required status check on both branches
 
 **`deploy.yml`** — triggers on push to `main` only:
 

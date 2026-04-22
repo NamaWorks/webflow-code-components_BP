@@ -31,7 +31,7 @@ Project rules for contributors and AI coding agents. Read this before making any
 dev
  └── feat/hero-card         ← cut from dev
       └── (work, commits)
-      └── PR to dev          ← CI runs (lint, Jest, Cypress)
+      └── PR to dev          ← CI runs (lint, Jest)
            └── merge to dev
                 └── PR to main ← CI runs again
                      └── merge to main → deploy to Webflow
@@ -68,8 +68,6 @@ This is a Webflow Code Components project. Components are built in React + TypeS
 | `pnpm new-component`   | Scaffold a new component with Plop (interactive prompts)         |
 | `pnpm test`            | Run all Jest unit/component tests                                |
 | `pnpm test -- --watch` | Jest watch mode                                                  |
-| `pnpm cypress:open`    | Open Cypress GUI (component mode)                                |
-| `pnpm cypress:run`     | Run Cypress headless (used in CI)                                |
 | `pnpm storybook`       | Start Storybook dev server at localhost:6006                     |
 | `pnpm build-storybook` | Build static Storybook output                                    |
 | `pnpm lint`            | Run ESLint                                                       |
@@ -112,8 +110,6 @@ src/components/<ComponentName>/
 | Story file default export | Component meta object                           | `export default { title: 'HeroCard', component: HeroCard }`           |
 | Story named exports       | Descriptive, PascalCase                         | `export const Default`, `export const Disabled`                       |
 | Test file                 | One `describe` per component, `it` per behavior | `describe('HeroCard', () => { it('renders without crashing', ...) })` |
-| Cypress spec              | `<Name>.cy.tsx` in `cypress/component/`         | `HeroCard.cy.tsx`                                                     |
-
 ---
 
 ## TypeScript Rules
@@ -138,14 +134,6 @@ src/components/<ComponentName>/
 - Mock external dependencies; never make real network calls in Jest tests
 - Use `@testing-library/react` and `@testing-library/jest-dom`
 
-### Cypress (integration — component mode)
-
-- Specs live in `cypress/component/<Name>.cy.tsx`
-- Cypress mounts components in a real browser — no app server needed
-- Use Cypress for behavior that benefits from a real browser (hover states, focus management, animations)
-- Do not duplicate what Jest already covers
-- Do not test the Webflow publish flow in Cypress — that is handled by the deploy workflow
-
 ---
 
 ## CI Pipeline Reference
@@ -158,8 +146,7 @@ src/components/<ComponentName>/
 4. `pnpm lint` — fails on any ESLint error
 5. `pnpm format:check` — fails if any file is not Prettier-formatted
 6. `pnpm test` — fails if any Jest test fails
-7. `pnpm cypress:run` — fails if any Cypress spec fails
-8. All steps must pass for the PR to be mergeable
+7. All steps must pass for the PR to be mergeable
 
 ### `deploy.yml` — runs on push to `main`
 
@@ -189,12 +176,11 @@ src/components/<ComponentName>/
 4. Wire up `declareComponent` (from `@webflow/react`) in `<Name>.webflow.tsx`, mapping props using `props` (from `@webflow/data-types`) to Webflow Designer controls
 5. Add at least a `Default` story in `<Name>.stories.tsx`
 6. Write Jest tests in `<Name>.test.tsx` (minimum: render, props, interactions)
-7. Write a Cypress spec in `cypress/component/<Name>.cy.tsx`
-8. **Manually add** the export to `src/index.ts`:
+7. **Manually add** the export to `src/index.ts`:
    ```ts
    export { ComponentName } from './components/ComponentName';
    ```
-9. Run `pnpm test` and `pnpm lint` — both must pass before committing
+8. Run `pnpm test` and `pnpm lint` — both must pass before committing
 
 ---
 
@@ -250,7 +236,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/). Every commi
 | `docs`     | Changes to README, RULES, ROADMAP, or inline comments |
 | `style`    | Formatting, whitespace, Prettier — no logic change    |
 | `refactor` | Code restructure with no behavior change              |
-| `test`     | Adding or updating tests (Jest or Cypress)            |
+| `test`     | Adding or updating tests (Jest)                       |
 | `chore`    | Tooling, dependencies, CI config, generator templates |
 
 ### Scope (optional but encouraged)
@@ -261,7 +247,6 @@ Use the component name or area being changed:
 feat(HeroCard): add slot support
 fix(ExampleButton): correct disabled pointer-events
 chore(ci): cache node_modules in deploy workflow
-test(ExampleButton): add Cypress click interaction spec
 ```
 
 ### Rules
@@ -284,6 +269,5 @@ feat(Badge): add Light and Dark variant support
 fix(ExampleButton): prevent double-click firing onClick twice
 docs: update deployment instructions in README
 chore(deps): upgrade @webflow/react to 1.2.0
-test(HeroCard): add Cypress focus management spec
 refactor(ExampleButton): extract button classes into constant
 ```

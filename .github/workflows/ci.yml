@@ -33,8 +33,3 @@ jobs:
       - name: Format check
         run: pnpm format:check
 
-      # Test and Cypress steps added in Phase 2
-      # - name: Test
-      #   run: pnpm test
-      # - name: Cypress
-      #   run: pnpm cypress:run

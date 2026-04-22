@@ -16,7 +16,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 - [ ] Install React and React DOM
 - [ ] Install Webflow CLI (`@webflow/cli`); create `webflow.json` with components glob (`./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)`) and globals path
 - [ ] Create `.env.example` with `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` placeholder values
-- [ ] Create `.gitignore` (node_modules, .env, dist, .DS_Store, storybook-static, cypress/screenshots, cypress/videos)
+- [ ] Create `.gitignore` (node_modules, .env, dist, .DS_Store, storybook-static)
 - [ ] Create empty `src/index.ts` barrel file
 - [ ] Install Tailwind CSS (`tailwindcss @tailwindcss/postcss postcss`); create `postcss.config.mjs`
 - [ ] Create `src/globals.css` with `@import "tailwindcss"`
@@ -39,7 +39,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 
 ## Phase 2: Testing Infrastructure
 
-**Goal:** Full Jest and Cypress setup with `ExampleButton` covered by real tests.
+**Goal:** Full Jest setup with `ExampleButton` covered by real tests.
 
 ### Tasks
 
@@ -53,14 +53,6 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
   - `disabled` prop applies disabled state
   - Click fires `onClick` callback
 - [ ] Run `pnpm test` — all tests pass
-- [ ] Install Cypress
-- [ ] Configure `cypress.config.ts` for **component testing mode** (no app server required)
-- [ ] Create `cypress/component/ExampleButton.cy.tsx`:
-  - Mounts the component
-  - Verifies label renders
-  - Verifies click behavior in a real browser
-- [ ] Add `pnpm cypress:open` and `pnpm cypress:run` scripts
-- [ ] Run `pnpm cypress:run` — spec passes
 
 **Deliverables:** All tests pass locally. Test infrastructure ready for new components.
 
@@ -94,7 +86,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 
 - [ ] Create `.github/workflows/ci.yml`:
   - Trigger: `pull_request` targeting `dev` or `main`
-  - Steps: checkout → setup Node 20 → `pnpm install --frozen-lockfile` → lint → Jest → Cypress headless
+  - Steps: checkout → setup Node 20 → `pnpm install --frozen-lockfile` → lint → Jest
   - Cache `node_modules` using `actions/cache`
   - This workflow is a required status check on both `dev` and `main`
 - [ ] Create `.github/workflows/deploy.yml`:

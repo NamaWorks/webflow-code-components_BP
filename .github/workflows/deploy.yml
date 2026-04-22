@@ -32,11 +32,5 @@ jobs:
       - name: Format check
         run: pnpm format:check
 
-      # Test and Cypress steps added in Phase 2
-      # - name: Test
-      #   run: pnpm test
-      # - name: Cypress
-      #   run: pnpm cypress:run
-
       - name: Deploy to Webflow
         run: npx webflow library share --no-input --api-token ${{ secrets.WEBFLOW_WORKSPACE_API_TOKEN }}
