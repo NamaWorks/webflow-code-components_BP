@@ -36,4 +36,6 @@ jobs:
         run: pnpm test
 
       - name: Deploy to Webflow
-        run: npx webflow library share --no-input --api-token ${{ secrets.WEBFLOW_WORKSPACE_API_TOKEN }}
+        env:
+          WEBFLOW_API_TOKEN: ${{ secrets.WEBFLOW_API_TOKEN }}
+        run: npx webflow library share --no-input

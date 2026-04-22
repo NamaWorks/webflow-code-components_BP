@@ -73,7 +73,7 @@ This is a Webflow Code Components project. Components are built in React + TypeS
 | `pnpm lint`            | Run ESLint                                                                 |
 | `pnpm format`          | Run Prettier                                                               |
 | `pnpm bundle`          | Bundle library locally for inspection (`dist/` served at `localhost:4000`) |
-| `pnpm deploy`          | Runs `npx webflow library share` — publish components to Webflow           |
+| `pnpm webflow:share`   | Runs `npx webflow library share` — publish components to Webflow           |
 
 ---
 
@@ -153,7 +153,7 @@ src/components/<ComponentName>/
 ### `deploy.yml` — runs on push to `main`
 
 1. Same steps as `ci.yml`
-2. `npx webflow library share --no-input --api-token $WEBFLOW_WORKSPACE_API_TOKEN` — publishes using the token from GitHub Secrets
+2. `npx webflow library share --no-input --api-token $WEBFLOW_API_TOKEN` — publishes using the token from GitHub Secrets
 3. If the deploy step fails: workflow is marked failed, GitHub notifies the commit author
 
 ---

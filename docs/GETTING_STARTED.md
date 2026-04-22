@@ -44,10 +44,10 @@ cp .env.example .env
 Open `.env` and add your Webflow Workspace API token (found in Webflow Dashboard → Workspace Settings → API Access):
 
 ```
-WEBFLOW_WORKSPACE_API_TOKEN=your_token_here
+WEBFLOW_API_TOKEN=your_token_here
 ```
 
-**3. Add the token to GitHub Secrets** — go to your repo's **Settings → Secrets and variables → Actions** and add `WEBFLOW_WORKSPACE_API_TOKEN`.
+**3. Add the token to GitHub Secrets** — go to your repo's **Settings → Secrets and variables → Actions** and add `WEBFLOW_API_TOKEN`.
 
 **4. Enable branch protection** — go to **Settings → Branches** and add rules for both `main` and `dev`:
 
@@ -296,14 +296,14 @@ All steps must pass. If any fails, the PR is blocked from merging.
 Runs the same steps as `ci.yml`, then:
 
 ```bash
-npx webflow library share --no-input --api-token $WEBFLOW_WORKSPACE_API_TOKEN
+npx webflow library share --no-input --api-token $WEBFLOW_API_TOKEN
 ```
 
 This bundles all `*.webflow.tsx` components found by the glob in `webflow.json` and publishes them to your Webflow workspace as a shared library.
 
 **If the deploy fails:** the workflow is marked as failed and GitHub sends a notification to the commit author. Check the Actions tab for logs. Common causes:
 
-- Invalid or expired `WEBFLOW_WORKSPACE_API_TOKEN`
+- Invalid or expired `WEBFLOW_API_TOKEN`
 - A component has a broken `declareComponent` declaration
 - Bundle size exceeds Webflow's 50MB limit
 
@@ -331,4 +331,4 @@ To publish to Webflow without going through CI:
 pnpm deploy
 ```
 
-This reads `WEBFLOW_WORKSPACE_API_TOKEN` from your `.env` file automatically.
+This reads `WEBFLOW_API_TOKEN` from your `.env` file automatically.
