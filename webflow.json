@@ -1,9 +1,7 @@
 {
   "library": {
     "name": "Test Library",
-    "components": [
-      "./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
-    ],
+    "components": ["./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"],
     "globals": "/Users/nama/Desktop/webflow-code_components-boilerplate/src/globals.ts",
     "description": "test"
   },
