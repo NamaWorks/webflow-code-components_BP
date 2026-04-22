@@ -110,6 +110,7 @@ src/components/<ComponentName>/
 | Story file default export | Component meta object                           | `export default { title: 'HeroCard', component: HeroCard }`           |
 | Story named exports       | Descriptive, PascalCase                         | `export const Default`, `export const Disabled`                       |
 | Test file                 | One `describe` per component, `it` per behavior | `describe('HeroCard', () => { it('renders without crashing', ...) })` |
+
 ---
 
 ## TypeScript Rules

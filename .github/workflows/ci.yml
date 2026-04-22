@@ -32,4 +32,3 @@ jobs:
 
       - name: Format check
         run: pnpm format:check
-

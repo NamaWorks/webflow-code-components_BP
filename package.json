@@ -8,7 +8,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "deploy": "npx webflow library share",
-"storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
