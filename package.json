@@ -33,7 +33,7 @@
     "@types/jest": "^30.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@webflow/webflow-cli": "latest",
+    "@webflow/webflow-cli": "^1.15.0",
     "eslint": "^9.0.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^5.0.0",
