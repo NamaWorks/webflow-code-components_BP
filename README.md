@@ -223,6 +223,14 @@ pnpm deploy
 
 Runs `npx webflow library share` using your local credentials. After a successful run, your components appear in the Webflow Designer under Libraries. Ensure you are authenticated with the Webflow CLI before running this command.
 
+To inspect the bundle locally before publishing:
+
+```bash
+pnpm bundle
+```
+
+This generates a `dist/` folder and serves it at `http://localhost:4000/`. Useful for debugging bundle issues without uploading to Webflow.
+
 ### CI/CD (automatic)
 
 On every merge to `main`, the `deploy.yml` workflow automatically:

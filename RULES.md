@@ -63,16 +63,17 @@ This is a Webflow Code Components project. Components are built in React + TypeS
 
 ## Key Commands
 
-| Command                | What it does                                                     |
-| ---------------------- | ---------------------------------------------------------------- |
-| `pnpm new-component`   | Scaffold a new component with Plop (interactive prompts)         |
-| `pnpm test`            | Run all Jest unit/component tests                                |
-| `pnpm test -- --watch` | Jest watch mode                                                  |
-| `pnpm storybook`       | Start Storybook dev server at localhost:6006                     |
-| `pnpm build-storybook` | Build static Storybook output                                    |
-| `pnpm lint`            | Run ESLint                                                       |
-| `pnpm format`          | Run Prettier                                                     |
-| `pnpm deploy`          | Runs `npx webflow library share` — publish components to Webflow |
+| Command                | What it does                                                               |
+| ---------------------- | -------------------------------------------------------------------------- |
+| `pnpm new-component`   | Scaffold a new component with Plop (interactive prompts)                   |
+| `pnpm test`            | Run all Jest unit/component tests                                          |
+| `pnpm test -- --watch` | Jest watch mode                                                            |
+| `pnpm storybook`       | Start Storybook dev server at localhost:6006                               |
+| `pnpm build-storybook` | Build static Storybook output                                              |
+| `pnpm lint`            | Run ESLint                                                                 |
+| `pnpm format`          | Run Prettier                                                               |
+| `pnpm bundle`          | Bundle library locally for inspection (`dist/` served at `localhost:4000`) |
+| `pnpm deploy`          | Runs `npx webflow library share` — publish components to Webflow           |
 
 ---
 

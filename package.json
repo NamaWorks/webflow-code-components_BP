@@ -9,6 +9,7 @@
     "format:check": "prettier --check .",
     "test": "jest",
     "test:watch": "jest --watch",
+    "bundle": "npx webflow library bundle --public-path http://localhost:4000/",
     "deploy": "npx webflow library share",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

@@ -170,11 +170,26 @@ import { ExampleButton } from './ExampleButton';
 
 export default declareComponent(ExampleButton, {
   name: 'ExampleButton',
+  description: 'A simple button component',
+  group: 'Buttons',
+  options: {
+    ssr: true,
+  },
   props: {
     label: props.Text({ name: 'Label', defaultValue: 'Click me' }),
   },
 });
 ```
+
+`declareComponent` configuration fields:
+
+| Field         | Required | Description                                              |
+| ------------- | -------- | -------------------------------------------------------- |
+| `name`        | Yes      | Component name shown in the Webflow Designer             |
+| `description` | No       | Short description shown in the Designer                  |
+| `group`       | No       | Groups related components together in the Designer panel |
+| `options.ssr` | No       | Enable server-side rendering support                     |
+| `props`       | No       | Maps React props to Webflow Designer controls            |
 
 Prop type helpers from `@webflow/data-types`:
 
@@ -213,6 +228,14 @@ After creating a new component, manually add its export to `src/index.ts`.
 pnpm deploy
 ```
 
+To inspect the bundle before publishing:
+
+```bash
+pnpm bundle
+```
+
+Generates a `dist/` folder and serves it at `http://localhost:4000/`. Use this to debug bundle issues without uploading to Webflow. To inspect the raw Webpack config being used, add `--debug-bundler` to the command.
+
 ### CI/CD
 
 On merge to `main`, GitHub Actions runs:
@@ -222,6 +245,8 @@ npx webflow library share --no-input
 ```
 
 Using `WEBFLOW_WORKSPACE_API_TOKEN` from GitHub repository secrets. See the CI/CD Setup section in `README.md` for configuration steps.
+
+> **Change detection:** The Webflow CLI will overwrite the current library on every deploy. If you remove a `*.webflow.tsx` file without running a new deploy, that component stays in Webflow. Always deploy after removing components.
 
 ---
 
