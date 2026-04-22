@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "bundle": "npx webflow library bundle --public-path http://localhost:4000/",
-    "deploy": "npx webflow library share",
+    "webflow:share": "npx webflow library share",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -33,7 +33,7 @@
     "@types/jest": "^30.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@webflow/webflow-cli": "^1.15.0",
+    "@webflow/webflow-cli": "^1.15.1",
     "eslint": "^9.0.0",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-react-hooks": "^5.0.0",

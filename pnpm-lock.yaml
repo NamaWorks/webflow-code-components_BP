@@ -58,8 +58,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.7(@types/react@18.3.28)
       '@webflow/webflow-cli':
-        specifier: ^1.15.0
-        version: 1.15.0(@babel/core@7.29.0)(@swc/helpers@0.5.21)(@types/node@25.6.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(typescript@5.9.3)
+        specifier: ^1.15.1
+        version: 1.15.1(@babel/core@7.29.0)(@swc/helpers@0.5.21)(@types/node@25.6.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(typescript@5.9.3)
       eslint:
         specifier: ^9.0.0
         version: 9.39.4(jiti@2.6.1)
@@ -2230,8 +2230,8 @@ packages:
       react: '>=18 <=19'
       react-dom: '>=18 <=19'
 
-  '@webflow/webflow-cli@1.15.0':
-    resolution: {integrity: sha512-cslwGM617BFgAO6h4JCPxVbSXJBtJMdhhkhlZUG8iUeTwq0oZtLs2mRNU2NSMRQQd54HCdhQ7H3odZCvAcyBtg==}
+  '@webflow/webflow-cli@1.15.1':
+    resolution: {integrity: sha512-NYtqVysqSlQgA3LaHQOuTkRglqtemb0ney1N2Kkci6fjfjslTwrheuSFJXgEQkEX2ZRsMqccmP5CVVbvGrmOvg==}
     engines: {node: '>=18.16.0'}
     hasBin: true
 
@@ -8035,7 +8035,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@webflow/webflow-cli@1.15.0(@babel/core@7.29.0)(@swc/helpers@0.5.21)(@types/node@25.6.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(typescript@5.9.3)':
+  '@webflow/webflow-cli@1.15.1(@babel/core@7.29.0)(@swc/helpers@0.5.21)(@types/node@25.6.0)(esbuild@0.25.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(typescript@5.9.3)':
     dependencies:
       '@babel/preset-env': 7.29.2(@babel/core@7.29.0)
       '@babel/preset-react': 7.28.5(@babel/core@7.29.0)
@@ -10441,7 +10441,7 @@ snapshots:
 
   md5.js@1.3.5:
     dependencies:
-      hash-base: 3.0.5
+      hash-base: 3.1.2
       inherits: 2.0.4
       safe-buffer: 5.2.1
 
@@ -11750,7 +11750,7 @@ snapshots:
   webflow-api@3.2.2:
     dependencies:
       crypto-browserify: 3.12.1
-      form-data: 4.0.4
+      form-data: 4.0.5
       formdata-node: 6.0.3
       js-base64: 3.7.7
       node-fetch: 2.7.0
