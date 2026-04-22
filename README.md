@@ -16,26 +16,31 @@ This boilerplate gives you:
 
 - A pre-wired React + TypeScript project structure
 - An `ExampleButton` component demonstrating the full pattern
-- Unit tests (Jest) and integration tests (Cypress component mode)
+- Unit and component tests (Jest)
 - Visual component preview with Storybook
-- Code quality enforcement via ESLint, Prettier, and Husky
-- A component scaffolding generator (`npm run new-component`)
+- Code quality enforcement via ESLint, Prettier, and GitHub Actions
+- A component scaffolding generator (`pnpm new-component`)
 - A complete CI/CD pipeline with GitHub Actions
 
 **What this is not:** this is not an npm package or a library to install. It is a GitHub Template Repository — clone it once per Webflow project, then build your components inside it.
 
 **Bundling:** The Webflow CLI handles bundling internally via Webpack. You do not need to configure your own bundler for component code.
 
+For a full walkthrough, see the `docs/` folder:
+
+- [`docs/GETTING_STARTED.md`](docs/GETTING_STARTED.md) — step-by-step guide: setup, creating components, commits/branches, CI/CD
+- [`docs/SETUP.md`](docs/SETUP.md) — technical reference for config files and project structure
+
 ---
 
 ## Prerequisites
 
 - **Node.js 20 LTS** — use [nvm](https://github.com/nvm-sh/nvm) and run `nvm use` (an `.nvmrc` is included)
-- **npm 9+** — comes with Node 20
+- **pnpm 9+** — comes with Node 20
 - A **Webflow account** with Code Components enabled on your workspace
 - A Webflow **site** where components will be deployed
 
-> Verify Webflow CLI authentication at [developers.webflow.com/code-components/installation](https://developers.webflow.com/code-components/installation) before running `npm run deploy`.
+> Verify Webflow CLI authentication at [developers.webflow.com/code-components/installation](https://developers.webflow.com/code-components/installation) before running `pnpm deploy`.
 
 ---
 
@@ -50,14 +55,14 @@ cd my-project
 nvm use
 
 # 3. Install dependencies
-npm install
+pnpm install
 
 # 4. Set up environment variables
 cp .env.example .env
 # Open .env and fill in your values (see Environment Variables below)
 
 # 5. Verify everything works
-npm run storybook
+pnpm storybook
 ```
 
 Storybook opens at `http://localhost:6006`. If you see the `ExampleButton` stories, you're ready to build.
@@ -68,14 +73,13 @@ Storybook opens at `http://localhost:6006`. If you see the `ExampleButton` stori
 
 Copy `.env.example` to `.env` and populate the following:
 
-| Variable | Required | Description |
-|---|---|---|
-| `WEBFLOW_API_KEY` | Yes | API key from your Webflow account settings |
-| `WEBFLOW_SITE_ID` | Yes | The ID of the Webflow site to publish components to |
+| Variable                      | Required | Description                                                                        |
+| ----------------------------- | -------- | ---------------------------------------------------------------------------------- |
+| `WEBFLOW_WORKSPACE_API_TOKEN` | Yes      | Workspace API token — found in Webflow Dashboard → Workspace Settings → API Access |
 
-> **Never commit `.env`** — it is listed in `.gitignore`. Only `.env.example` (with placeholder values) should be committed.
+> **Never commit `.env`** — it is listed in `.gitignore`. Only `.env.example` (with a placeholder value) should be committed.
 
-> Verify the exact variable names against your `webflow.json` and the [Webflow CLI docs](https://developers.webflow.com/code-components/reference/cli).
+> The CLI reads `WEBFLOW_WORKSPACE_API_TOKEN` automatically from your `.env` file, or you can pass it directly with `--api-token`. See the [Webflow CLI docs](https://developers.webflow.com/code-components/reference/cli).
 
 ---
 
@@ -94,23 +98,24 @@ Copy `.env.example` to `.env` and populate the following:
 │   ├── globals.ts                                 # Webflow globals entry — imports globals.css
 │   ├── globals.css                                # Tailwind CSS import (@import "tailwindcss")
 │   └── index.ts                                   # Barrel export for the entire library
-├── cypress/
-│   └── component/                         # Cypress component test specs
 ├── .storybook/
 │   ├── main.ts                            # Storybook configuration (Vite framework)
 │   └── preview.ts                         # Global decorators and parameters
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml                         # Runs on PR: lint → Jest → Cypress
+│       ├── ci.yml                         # Runs on PR: lint → Jest
 │       └── deploy.yml                     # Runs on merge to main: tests → devlink publish
+├── docs/
+│   ├── GETTING_STARTED.md                 # Step-by-step guide: setup, components, workflow, CI/CD
+│   └── SETUP.md                           # Technical reference for config files and project structure
 ├── plop/
 │   └── component/                         # Handlebars templates for new-component generator
 ├── .env.example                           # Environment variable template (commit this, not .env)
 ├── .gitignore
-├── .eslintrc.json
+├── .prettierignore
+├── eslint.config.js                       # ESLint v9 flat config
 ├── .prettierrc
-├── .nvmrc                                 # Pins Node version to 20 LTS
-├── webflow.json                           # Webflow CLI configuration (components glob, globals, bundleConfig)
+├── webflow.json                           # Webflow CLI configuration (components glob, globals)
 ├── postcss.config.mjs                     # PostCSS config for Tailwind CSS
 ├── plopfile.js                            # Component generator definition
 ├── package.json
@@ -127,10 +132,11 @@ Copy `.env.example` to `.env` and populate the following:
 Use the component generator — do not create files manually:
 
 ```bash
-npm run new-component
+pnpm new-component
 ```
 
 Answer the prompts:
+
 - **Component name** (PascalCase, e.g. `HeroCard`)
 - **Description** (short, used in file comments)
 - **Has slots?** (yes/no — slots are Webflow content regions that accept child elements)
@@ -177,8 +183,8 @@ The `ExampleButton` in `src/components/ExampleButton/` is a complete, working ex
 ### Storybook
 
 ```bash
-npm run storybook        # Start Storybook dev server at http://localhost:6006
-npm run build-storybook  # Build static Storybook output
+pnpm storybook        # Start Storybook dev server at http://localhost:6006
+pnpm build-storybook  # Build static Storybook output
 ```
 
 Use Storybook to build and visually validate components before publishing to Webflow. Stories render the raw React component — no DevLink connection required.
@@ -186,11 +192,11 @@ Use Storybook to build and visually validate components before publishing to Web
 ### Linting and Formatting
 
 ```bash
-npm run lint     # Run ESLint across the project
-npm run format   # Run Prettier across the project
+pnpm lint     # Run ESLint across the project
+pnpm format   # Run Prettier across the project
 ```
 
-Both run automatically via Husky on staged files before every commit. **A lint or format error blocks the commit.** Fix the error, or run `npm run format` to auto-fix formatting issues before committing again.
+Both are enforced by GitHub Actions on every PR — a lint or format error will block the PR from merging. Run them locally before pushing to catch issues early.
 
 ---
 
@@ -199,20 +205,11 @@ Both run automatically via Husky on staged files before every commit. **A lint o
 ### Unit and Component Tests — Jest
 
 ```bash
-npm test              # Run all Jest tests
-npm test -- --watch   # Watch mode for active development
+pnpm test              # Run all Jest tests
+pnpm test -- --watch   # Watch mode for active development
 ```
 
 Test files live at `src/components/<Name>/<Name>.test.tsx`. Uses React Testing Library. Every component must have a test file before a PR can merge.
-
-### Integration Tests — Cypress (Component Mode)
-
-```bash
-npm run cypress:open   # Open Cypress GUI (for local development)
-npm run cypress:run    # Run Cypress headless (used in CI)
-```
-
-Cypress runs in **component testing mode** — it mounts components directly in a real browser without needing a running app server. Specs live in `cypress/component/`. Use Cypress for interaction and behavior tests that benefit from a real browser environment. Do not duplicate what Jest already covers.
 
 ---
 
@@ -221,7 +218,7 @@ Cypress runs in **component testing mode** — it mounts components directly in 
 ### Local
 
 ```bash
-npm run deploy
+pnpm deploy
 ```
 
 Runs `npx webflow library share` using your local credentials. After a successful run, your components appear in the Webflow Designer under Libraries. Ensure you are authenticated with the Webflow CLI before running this command.
@@ -230,8 +227,8 @@ Runs `npx webflow library share` using your local credentials. After a successfu
 
 On every merge to `main`, the `deploy.yml` workflow automatically:
 
-1. Runs lint, Jest, and Cypress (same checks as a PR)
-2. Runs `npm run deploy` using secrets stored in the GitHub repository
+1. Runs lint and Jest (same checks as a PR)
+2. Runs `pnpm deploy` using secrets stored in the GitHub repository
 3. If the publish fails, the workflow fails and GitHub sends a failure notification to the commit author
 
 See [CI/CD Setup](#cicd-setup) for how to configure secrets.
@@ -248,10 +245,9 @@ In your repository settings, check **Template repository** so others can use the
 
 Go to **Settings → Secrets and variables → Actions** and add:
 
-| Secret name | Value |
-|---|---|
-| `WEBFLOW_API_KEY` | Your Webflow API key |
-| `WEBFLOW_SITE_ID` | Your Webflow site ID |
+| Secret name                   | Value                            |
+| ----------------------------- | -------------------------------- |
+| `WEBFLOW_WORKSPACE_API_TOKEN` | Your Webflow Workspace API token |
 
 ### 3. Enable branch protection
 
@@ -263,6 +259,7 @@ Go to **Settings → Branches → Add rule** and apply the same settings to **bo
 - Check **Do not allow bypassing the above settings**
 
 For `main` only, also enable:
+
 - **Require a pull request before merging** (only `dev` → `main` PRs should reach here)
 
 ### Branch model
@@ -280,15 +277,16 @@ Feature and fix branches always target `dev`. Only `dev` merges into `main`. See
 ### How the workflows behave
 
 **`ci.yml`** — triggers on pull requests targeting `dev` or `main`:
+
 1. Install dependencies
-2. Run `npm run lint`
-3. Run `npm test`
-4. Run `npm run cypress:run`
-5. All steps must pass — enforced as a required status check on both branches
+2. Run `pnpm lint`
+3. Run `pnpm test`
+4. All steps must pass — enforced as a required status check on both branches
 
 **`deploy.yml`** — triggers on push to `main` only:
+
 1. Same steps as `ci.yml`
-2. Run `npx webflow library share --no-input` with `WEBFLOW_API_KEY` and `WEBFLOW_SITE_ID` injected from GitHub Secrets
+2. Run `npx webflow library share --no-input` with `WEBFLOW_WORKSPACE_API_TOKEN` injected from GitHub Secrets via `--api-token`
 3. If any step fails, the workflow is marked as failed and GitHub sends a notification to the commit author
 
 ---
