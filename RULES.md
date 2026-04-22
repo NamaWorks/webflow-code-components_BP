@@ -65,16 +65,16 @@ This is a Webflow Code Components project. Components are built in React + TypeS
 
 | Command | What it does |
 |---|---|
-| `npm run new-component` | Scaffold a new component with Plop (interactive prompts) |
-| `npm test` | Run all Jest unit/component tests |
-| `npm test -- --watch` | Jest watch mode |
-| `npm run cypress:open` | Open Cypress GUI (component mode) |
-| `npm run cypress:run` | Run Cypress headless (used in CI) |
-| `npm run storybook` | Start Storybook dev server at localhost:6006 |
-| `npm run build-storybook` | Build static Storybook output |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Run Prettier |
-| `npm run deploy` | Runs `npx webflow library share` — publish components to Webflow |
+| `pnpm new-component` | Scaffold a new component with Plop (interactive prompts) |
+| `pnpm test` | Run all Jest unit/component tests |
+| `pnpm test -- --watch` | Jest watch mode |
+| `pnpm cypress:open` | Open Cypress GUI (component mode) |
+| `pnpm cypress:run` | Run Cypress headless (used in CI) |
+| `pnpm storybook` | Start Storybook dev server at localhost:6006 |
+| `pnpm build-storybook` | Build static Storybook output |
+| `pnpm lint` | Run ESLint |
+| `pnpm format` | Run Prettier |
+| `pnpm deploy` | Runs `npx webflow library share` — publish components to Webflow |
 
 ---
 
@@ -153,16 +153,16 @@ src/components/<ComponentName>/
 
 1. Checkout code
 2. Set up Node 20
-3. `npm ci`
-4. `npm run lint` — fails on any ESLint error
-5. `npm test` — fails if any Jest test fails
-6. `npm run cypress:run` — fails if any Cypress spec fails
+3. `pnpm install --frozen-lockfile`
+4. `pnpm lint` — fails on any ESLint error
+5. `pnpm test` — fails if any Jest test fails
+6. `pnpm cypress:run` — fails if any Cypress spec fails
 7. All steps must pass for the PR to be mergeable
 
 ### `deploy.yml` — runs on push to `main`
 
 1. Same steps as `ci.yml`
-2. `npx webflow library share --no-input` — publishes with `WEBFLOW_API_KEY` and `WEBFLOW_SITE_ID` from GitHub Secrets
+2. `npx webflow library share --no-input --api-token $WEBFLOW_WORKSPACE_API_TOKEN` — publishes using the token from GitHub Secrets
 3. If the deploy step fails: workflow is marked failed, GitHub notifies the commit author
 
 ---
@@ -182,7 +182,7 @@ src/components/<ComponentName>/
 
 ## Adding a New Component (step-by-step)
 
-1. Run `npm run new-component` and follow the prompts
+1. Run `pnpm new-component` and follow the prompts
 2. Do **not** create files manually — always use the generator
 3. Implement the React component in `<Name>.tsx` using Tailwind for styling
 4. Wire up `declareComponent` (from `@webflow/react`) in `<Name>.webflow.tsx`, mapping props using `props` (from `@webflow/data-types`) to Webflow Designer controls
@@ -193,7 +193,7 @@ src/components/<ComponentName>/
    ```ts
    export { ComponentName } from './components/ComponentName';
    ```
-9. Run `npm test` and `npm run lint` — both must pass before committing
+9. Run `pnpm test` and `pnpm lint` — both must pass before committing
 
 ---
 

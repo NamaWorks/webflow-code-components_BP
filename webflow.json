@@ -1,0 +1,7 @@
+{
+  "library": {
+    "name": "My Component Library",
+    "components": ["./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"],
+    "globals": "./src/globals.ts"
+  }
+}

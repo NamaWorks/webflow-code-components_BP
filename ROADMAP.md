@@ -15,7 +15,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 - [ ] Add `.nvmrc` pinned to Node 20 LTS
 - [ ] Install React and React DOM
 - [ ] Install Webflow CLI (`@webflow/cli`); create `webflow.json` with components glob (`./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)`) and globals path
-- [ ] Create `.env.example` with `WEBFLOW_API_KEY` and `WEBFLOW_SITE_ID` placeholder values
+- [ ] Create `.env.example` with `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` placeholder values
 - [ ] Create `.gitignore` (node_modules, .env, dist, .DS_Store, storybook-static, cypress/screenshots, cypress/videos)
 - [ ] Create empty `src/index.ts` barrel file
 - [ ] Install Tailwind CSS (`tailwindcss @tailwindcss/postcss postcss`); create `postcss.config.mjs`
@@ -30,11 +30,11 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 - [ ] Export `ExampleButton` from `src/index.ts`
 - [ ] Install ESLint with TypeScript and React plugins; create `.eslintrc.json`
 - [ ] Install Prettier; create `.prettierrc`
-- [ ] Add `npm run lint` and `npm run format` scripts
+- [ ] Add `pnpm lint` and `pnpm format` scripts
 - [ ] Install Husky and lint-staged; configure pre-commit hook to run lint-staged on staged files
 - [ ] Verify: committing a file with a lint error is blocked
 
-**Deliverables:** Component publishable to Webflow via `npm run deploy` (`npx webflow library share`). Lint enforced on commit.
+**Deliverables:** Component publishable to Webflow via `pnpm deploy` (`npx webflow library share`). Lint enforced on commit.
 
 ---
 
@@ -53,15 +53,15 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
   - `label` prop renders in the DOM
   - `disabled` prop applies disabled state
   - Click fires `onClick` callback
-- [ ] Run `npm test` — all tests pass
+- [ ] Run `pnpm test` — all tests pass
 - [ ] Install Cypress
 - [ ] Configure `cypress.config.ts` for **component testing mode** (no app server required)
 - [ ] Create `cypress/component/ExampleButton.cy.tsx`:
   - Mounts the component
   - Verifies label renders
   - Verifies click behavior in a real browser
-- [ ] Add `npm run cypress:open` and `npm run cypress:run` scripts
-- [ ] Run `npm run cypress:run` — spec passes
+- [ ] Add `pnpm cypress:open` and `pnpm cypress:run` scripts
+- [ ] Run `pnpm cypress:run` — spec passes
 
 **Deliverables:** All tests pass locally. Test infrastructure ready for new components.
 
@@ -80,8 +80,8 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
   - `Default` — standard button
   - `Disabled` — disabled state
   - `LongLabel` — edge case with long text
-- [ ] Run `npm run storybook` — Storybook starts on port 6006 with no errors, stories render
-- [ ] Add `npm run build-storybook` script
+- [ ] Run `pnpm storybook` — Storybook starts on port 6006 with no errors, stories render
+- [ ] Add `pnpm build-storybook` script
 
 **Deliverables:** Storybook running with ExampleButton stories. No build errors. Tailwind classes render correctly in stories.
 
@@ -95,13 +95,13 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 
 - [ ] Create `.github/workflows/ci.yml`:
   - Trigger: `pull_request` targeting `dev` or `main`
-  - Steps: checkout → setup Node 20 → `npm ci` → lint → Jest → Cypress headless
+  - Steps: checkout → setup Node 20 → `pnpm install --frozen-lockfile` → lint → Jest → Cypress headless
   - Cache `node_modules` using `actions/cache`
   - This workflow is a required status check on both `dev` and `main`
 - [ ] Create `.github/workflows/deploy.yml`:
   - Trigger: `push` to `main`
   - Steps: same as `ci.yml`, then `npx webflow library share --no-input`
-  - Inject `WEBFLOW_API_KEY` and `WEBFLOW_SITE_ID` as env vars from GitHub Secrets
+  - Inject `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` as env vars from GitHub Secrets
   - On failure: workflow fails → GitHub sends default failure notification to commit author
 - [ ] Update README.md CI/CD Setup section with actual workflow names and status check configuration steps
 - [ ] **Test:** Open a PR with a lint error — verify CI fails and blocks merge
@@ -113,7 +113,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 
 ## Phase 5: Component Generator (DX)
 
-**Goal:** `npm run new-component` produces a complete, correctly structured component scaffold.
+**Goal:** `pnpm new-component` produces a complete, correctly structured component scaffold.
 
 ### Tasks
 
@@ -130,11 +130,11 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
   - Short description
   - Has slots? (yes/no — conditionally adds slot definition in `.webflow.tsx` template)
 - [ ] Add `"new-component": "plop"` script to `package.json`
-- [ ] **Test:** Run `npm run new-component`, enter `TestCard` — verify all five files are created with correct content and naming
-- [ ] Verify generated component passes `npm run lint` and `npm test` immediately after generation (with placeholder content)
+- [ ] **Test:** Run `pnpm new-component`, enter `TestCard` — verify all five files are created with correct content and naming
+- [ ] Verify generated component passes `pnpm lint` and `pnpm test` immediately after generation (with placeholder content)
 - [ ] Update README.md and AGENTS.md if any generator behavior differs from what is documented
 
-**Deliverables:** `npm run new-component` produces a working scaffold. Generated components are lint-clean and have a passing placeholder test.
+**Deliverables:** `pnpm new-component` produces a working scaffold. Generated components are lint-clean and have a passing placeholder test.
 
 ---
 
