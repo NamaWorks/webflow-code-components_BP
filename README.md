@@ -74,8 +74,8 @@ Storybook opens at `http://localhost:6006`. If you see the `ExampleButton` stori
 
 Copy `.env.example` to `.env` and populate the following:
 
-| Variable                      | Required | Description                                                                        |
-| ----------------------------- | -------- | ---------------------------------------------------------------------------------- |
+| Variable            | Required | Description                                                                        |
+| ------------------- | -------- | ---------------------------------------------------------------------------------- |
 | `WEBFLOW_API_TOKEN` | Yes      | Workspace API token — found in Webflow Dashboard → Workspace Settings → API Access |
 
 > **Never commit `.env`** — it is listed in `.gitignore`. Only `.env.example` (with a placeholder value) should be committed.
@@ -254,8 +254,8 @@ In your repository settings, check **Template repository** so others can use the
 
 Go to **Settings → Secrets and variables → Actions** and add:
 
-| Secret name                   | Value                            |
-| ----------------------------- | -------------------------------- |
+| Secret name         | Value                            |
+| ------------------- | -------------------------------- |
 | `WEBFLOW_API_TOKEN` | Your Webflow Workspace API token |
 
 ### 3. Enable branch protection
