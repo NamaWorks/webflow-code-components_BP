@@ -15,7 +15,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 - [ ] Add `.nvmrc` pinned to Node 20 LTS
 - [ ] Install React and React DOM
 - [ ] Install Webflow CLI (`@webflow/cli`); create `webflow.json` with components glob (`./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)`) and globals path
-- [ ] Create `.env.example` with `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` placeholder values
+- [ ] Create `.env.example` with `WEBFLOW_API_TOKEN` and `WEBFLOW_API_TOKEN` placeholder values
 - [ ] Create `.gitignore` (node_modules, .env, dist, .DS_Store, storybook-static)
 - [ ] Create empty `src/index.ts` barrel file
 - [ ] Install Tailwind CSS (`tailwindcss @tailwindcss/postcss postcss`); create `postcss.config.mjs`
@@ -92,7 +92,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 - [ ] Create `.github/workflows/deploy.yml`:
   - Trigger: `push` to `main`
   - Steps: same as `ci.yml`, then `npx webflow library share --no-input`
-  - Inject `WEBFLOW_WORKSPACE_API_TOKEN` and `WEBFLOW_WORKSPACE_API_TOKEN` as env vars from GitHub Secrets
+  - Inject `WEBFLOW_API_TOKEN` and `WEBFLOW_API_TOKEN` as env vars from GitHub Secrets
   - On failure: workflow fails → GitHub sends default failure notification to commit author
 - [ ] Update README.md CI/CD Setup section with actual workflow names and status check configuration steps
 - [ ] **Test:** Open a PR with a lint error — verify CI fails and blocks merge
@@ -132,6 +132,8 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 ## Future Considerations
 
 These are not planned but worth tracking as the project matures:
+
+- **Webflow REST API example** — add an `ExampleFetch` component that demonstrates the backend-proxy pattern for fetching Webflow CMS data at runtime (see `docs/WEBFLOW_API.md`)
 
 - **Storybook deployment** — publish Storybook as a static site (GitHub Pages, Vercel) for stakeholder review
 - **Visual regression testing** — add Chromatic or Percy to catch unintended visual changes

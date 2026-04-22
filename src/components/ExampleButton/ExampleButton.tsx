@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface ExampleButtonProps {
   label: string;
   disabled?: boolean;
