@@ -1,0 +1,14 @@
+import { render, screen } from '@testing-library/react';
+import { {{name}} } from './{{name}}';
+
+describe('{{name}}', () => {
+  it('renders without crashing', () => {
+    render(<{{name}} title="Test" />);
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+
+  it('renders the title prop', () => {
+    render(<{{name}} title="Hello World" />);
+    expect(screen.getByText('Hello World')).toBeInTheDocument();
+  });
+});

@@ -13,7 +13,8 @@
     "webflow:share-first": "npx webflow library share",
     "webflow:share": "npx webflow library share --no-input",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "new-component": "plop --plopfile plopfile.mjs"
   },
   "dependencies": {
     "@webflow/data-types": "1.3.0",
@@ -41,6 +42,7 @@
     "eslint-plugin-storybook": "^10.3.5",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
+    "plop": "^4.0.5",
     "postcss": "^8.0.0",
     "prettier": "^3.0.0",
     "storybook": "^10.3.5",
