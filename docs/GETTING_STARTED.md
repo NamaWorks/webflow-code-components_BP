@@ -328,7 +328,15 @@ pnpm format
 To publish to Webflow without going through CI:
 
 ```bash
-pnpm deploy
+pnpm webflow:share
 ```
 
 This reads `WEBFLOW_API_TOKEN` from your `.env` file automatically.
+
+> **First run only:** `pnpm webflow:share` uses `--no-input` and will fail if no library exists yet. For the very first publish, run the command directly to get the interactive prompt:
+>
+> ```bash
+> npx webflow library share
+> ```
+>
+> Select **[Create new code library]** and press Enter. Once the library is created, `pnpm webflow:share` and CI will work automatically from that point on.
