@@ -333,4 +333,10 @@ pnpm webflow:share
 
 This reads `WEBFLOW_API_TOKEN` from your `.env` file automatically.
 
-> **First run only:** The CLI will prompt you to select an existing code library or create a new one. Use the arrow keys to select **[Create new code library]** and press Enter. This creates the library in your Webflow workspace. All subsequent runs — including CI — will find the library automatically and work without prompts (`--no-input`).
+> **First run only:** `pnpm webflow:share` uses `--no-input` and will fail if no library exists yet. For the very first publish, run the command directly to get the interactive prompt:
+>
+> ```bash
+> npx webflow library share
+> ```
+>
+> Select **[Create new code library]** and press Enter. Once the library is created, `pnpm webflow:share` and CI will work automatically from that point on.

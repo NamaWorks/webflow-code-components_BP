@@ -10,7 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "bundle": "npx webflow library bundle --public-path http://localhost:4000/",
-    "webflow:share": "npx webflow library share",
+    "webflow:share-first": "npx webflow library share",
+    "webflow:share": "npx webflow library share --no-input",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
