@@ -1,0 +1,26 @@
+// {{description}}
+// Prop types reference: https://developers.webflow.com/code-components/reference/prop-types
+
+import { declareComponent{{#if hasSlots}}, slots{{/if}} } from '@webflow/react';
+import { props } from '@webflow/data-types';
+import { {{name}} } from './{{name}}';
+
+export default declareComponent({{name}}, {
+  name: '{{name}}',
+  description: '{{description}}',
+  group: 'Components',
+  options: {
+    ssr: true,
+  },
+  props: {
+    title: props.Text({
+      name: 'Title',
+      defaultValue: '{{name}}',
+    }),
+  },
+{{#if hasSlots}}
+  slots: {
+    children: slots.Children(),
+  },
+{{/if}}
+});

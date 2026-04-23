@@ -1,0 +1,17 @@
+// {{description}}
+
+export interface {{name}}Props {
+  title: string;
+{{#if hasSlots}}
+  children?: React.ReactNode;
+{{/if}}
+}
+
+export const {{name}} = ({ title{{#if hasSlots}}, children{{/if}} }: {{name}}Props) => (
+  <div className="rounded-lg bg-white p-6 shadow-md">
+    <h2 className="text-2xl font-bold">{title}</h2>
+{{#if hasSlots}}
+    {children}
+{{/if}}
+  </div>
+);

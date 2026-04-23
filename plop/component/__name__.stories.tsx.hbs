@@ -1,0 +1,19 @@
+// {{description}}
+// Import the raw React component, never the .webflow.tsx wrapper.
+
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { {{name}} } from './{{name}}';
+
+const meta: Meta<typeof {{name}}> = {
+  title: 'Components/{{name}}',
+  component: {{name}},
+};
+
+export default meta;
+type Story = StoryObj<typeof {{name}}>;
+
+export const Default: Story = {
+  args: {
+    title: '{{name}}',
+  },
+};
