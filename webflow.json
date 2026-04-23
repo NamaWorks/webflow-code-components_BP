@@ -1,11 +1,12 @@
 {
   "library": {
-    "name": "Test Library",
+    "name": "test-2",
     "components": [
       "./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"
     ],
     "globals": "./src/globals.ts",
-    "description": "test"
+    "description": "test-2",
+    "id": "test-2"
   },
   "telemetry": {
     "global": {
