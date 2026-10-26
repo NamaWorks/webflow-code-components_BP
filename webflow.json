@@ -1,10 +1,10 @@
 {
   "library": {
-    "name": "test-2",
+    "name": "lypia-code-components",
     "components": ["./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)"],
     "globals": "./src/globals.ts",
-    "description": "test-2",
-    "id": "test-2"
+    "description": "lypia-code-components",
+    "id": "lypia-code-components"
   },
   "telemetry": {
     "global": {
