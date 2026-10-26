@@ -10,8 +10,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "bundle": "npx webflow devlink bundle --public-path http://localhost:4000/",
-    "webflow:share-first": "npx webflow devlink import",
-    "webflow:share": "npx webflow devlink import --no-input",
+    "webflow:share-first": "npx webflow devlink import --api-token $(grep '^WEBFLOW_API_TOKEN=' .env | head -1 | cut -d= -f2 | tr -d '\\r\\n')",
+    "webflow:share": "npx webflow devlink import --no-input --api-token $(grep '^WEBFLOW_API_TOKEN=' .env | head -1 | cut -d= -f2 | tr -d '\\r\\n')",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "new-component": "plop --plopfile plopfile.mjs"
@@ -19,6 +19,7 @@
   "dependencies": {
     "@webflow/data-types": "^2.8.0",
     "@webflow/react": "^2.8.0",
+    "gsap": "^3.15.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
@@ -32,6 +33,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@types/gsap": "^3.0.0",
     "@types/jest": "^30.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
