@@ -296,7 +296,7 @@ All steps must pass. If any fails, the PR is blocked from merging.
 Runs the same steps as `ci.yml`, then:
 
 ```bash
-npx webflow library share --no-input --api-token $WEBFLOW_API_TOKEN
+npx webflow devlink import --no-input --api-token $WEBFLOW_API_TOKEN
 ```
 
 This bundles all `*.webflow.tsx` components found by the glob in `webflow.json` and publishes them to your Webflow workspace as a shared library.
@@ -336,7 +336,7 @@ This reads `WEBFLOW_API_TOKEN` from your `.env` file automatically.
 > **First run only:** `pnpm webflow:share` uses `--no-input` and will fail if no library exists yet. For the very first publish, run the command directly to get the interactive prompt:
 >
 > ```bash
-> npx webflow library share
+> npx webflow devlink import
 > ```
 >
 > Select **[Create new code library]** and press Enter. Once the library is created, `pnpm webflow:share` and CI will work automatically from that point on.

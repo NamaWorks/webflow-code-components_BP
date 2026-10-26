@@ -10,7 +10,7 @@ A technical reference for the project structure and configuration files. Read th
 Your React component (.tsx)
   └── Webflow wrapper (.webflow.tsx)  ← declareComponent registers props with the Designer
        └── Webflow CLI picks it up via glob in webflow.json
-            └── npx webflow library share
+            └── npx webflow devlink import
                  └── Published to your Webflow site as a shared library
 ```
 
@@ -241,7 +241,7 @@ Generates a `dist/` folder and serves it at `http://localhost:4000/`. Use this t
 On merge to `main`, GitHub Actions runs:
 
 ```bash
-npx webflow library share --no-input
+npx webflow devlink import --no-input
 ```
 
 Using `WEBFLOW_API_TOKEN` from GitHub repository secrets. See the CI/CD Setup section in `README.md` for configuration steps.

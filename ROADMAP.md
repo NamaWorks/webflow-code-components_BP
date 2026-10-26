@@ -12,7 +12,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 
 - [ ] Initialize `package.json` with project name, version `0.1.0`, and script stubs
 - [ ] Install and configure TypeScript (`tsconfig.json` — strict mode, JSX preserve, path aliases)
-- [ ] Add `.nvmrc` pinned to Node 20 LTS
+- [ ] Add `.nvmrc` pinned to Node 22 LTS
 - [ ] Install React and React DOM
 - [ ] Install Webflow CLI (`@webflow/cli`); create `webflow.json` with components glob (`./src/**/*.webflow.@(js|jsx|mjs|ts|tsx)`) and globals path
 - [ ] Create `.env.example` with `WEBFLOW_API_TOKEN` and `WEBFLOW_API_TOKEN` placeholder values
@@ -33,7 +33,7 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 - [ ] Add `pnpm lint` and `pnpm format` scripts
 - [ ] Verify lint and format run cleanly locally (`pnpm lint` and `pnpm format:check`)
 
-**Deliverables:** Component publishable to Webflow via `pnpm deploy` (`npx webflow library share`). Lint enforced via GitHub Actions CI.
+**Deliverables:** Component publishable to Webflow via `pnpm deploy` (`npx webflow devlink import`). Lint enforced via GitHub Actions CI.
 
 ---
 
@@ -86,12 +86,12 @@ This document tracks how the boilerplate is built out from scratch. Each phase i
 
 - [ ] Create `.github/workflows/ci.yml`:
   - Trigger: `pull_request` targeting `dev` or `main`
-  - Steps: checkout → setup Node 20 → `pnpm install --frozen-lockfile` → lint → Jest
+  - Steps: checkout → setup Node 22 → `pnpm install --frozen-lockfile` → lint → Jest
   - Cache `node_modules` using `actions/cache`
   - This workflow is a required status check on both `dev` and `main`
 - [ ] Create `.github/workflows/deploy.yml`:
   - Trigger: `push` to `main`
-  - Steps: same as `ci.yml`, then `npx webflow library share --no-input`
+  - Steps: same as `ci.yml`, then `npx webflow devlink import --no-input`
   - Inject `WEBFLOW_API_TOKEN` and `WEBFLOW_API_TOKEN` as env vars from GitHub Secrets
   - On failure: workflow fails → GitHub sends default failure notification to commit author
 - [ ] Update README.md CI/CD Setup section with actual workflow names and status check configuration steps

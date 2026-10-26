@@ -36,8 +36,8 @@ For a full walkthrough, see the `docs/` folder:
 
 ## Prerequisites
 
-- **Node.js 20 LTS** — use [nvm](https://github.com/nvm-sh/nvm) and run `nvm use` (an `.nvmrc` is included)
-- **pnpm 9+** — comes with Node 20
+- **Node.js 22 LTS** — use [nvm](https://github.com/nvm-sh/nvm) and run `nvm use` (an `.nvmrc` is included)
+- **pnpm 9+** — comes with Node 22
 - A **Webflow account** with Code Components enabled on your workspace
 - A Webflow **site** where components will be deployed
 
@@ -222,7 +222,7 @@ Test files live at `src/components/<Name>/<Name>.test.tsx`. Uses React Testing L
 pnpm webflow:share
 ```
 
-Runs `npx webflow library share` using your local credentials. After a successful run, your components appear in the Webflow Designer under Libraries. Ensure you are authenticated with the Webflow CLI before running this command.
+Runs `npx webflow devlink import` using your local credentials. After a successful run, your components appear in the Webflow Designer under Libraries. Ensure you are authenticated with the Webflow CLI before running this command.
 
 To inspect the bundle locally before publishing:
 
@@ -295,7 +295,7 @@ Feature and fix branches always target `dev`. Only `dev` merges into `main`. See
 **`deploy.yml`** — triggers on push to `main` only:
 
 1. Same steps as `ci.yml`
-2. Run `npx webflow library share --no-input` with `WEBFLOW_API_TOKEN` injected from GitHub Secrets via `--api-token`
+2. Run `npx webflow devlink import --no-input` with `WEBFLOW_API_TOKEN` injected from GitHub Secrets via `--api-token`
 3. If any step fails, the workflow is marked as failed and GitHub sends a notification to the commit author
 
 ---
