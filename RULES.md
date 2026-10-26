@@ -57,7 +57,7 @@ The branch should contain only the work for that component: its five files, its 
 
 ## What This Repository Is
 
-This is a Webflow Code Components project. Components are built in React + TypeScript, then published to a Webflow site via the Webflow CLI (`npx webflow library share`). One repo = one Webflow site's component library. Multiple components live in `src/components/`. The Webflow CLI uses its own internal Webpack to bundle components — there is no bundler config for component code itself (unless custom CSS processing is needed). Storybook has its own internal bundler (Vite) used only for the dev server and stories.
+This is a Webflow Code Components project. Components are built in React + TypeScript, then published to a Webflow site via the Webflow CLI (`npx webflow devlink import`). One repo = one Webflow site's component library. Multiple components live in `src/components/`. The Webflow CLI uses its own internal Webpack to bundle components — there is no bundler config for component code itself (unless custom CSS processing is needed). Storybook has its own internal bundler (Vite) used only for the dev server and stories.
 
 ---
 
@@ -73,7 +73,7 @@ This is a Webflow Code Components project. Components are built in React + TypeS
 | `pnpm lint`            | Run ESLint                                                                 |
 | `pnpm format`          | Run Prettier                                                               |
 | `pnpm bundle`          | Bundle library locally for inspection (`dist/` served at `localhost:4000`) |
-| `pnpm webflow:share`   | Runs `npx webflow library share` — publish components to Webflow           |
+| `pnpm webflow:share`   | Runs `npx webflow devlink import` — publish components to Webflow          |
 
 ---
 
@@ -143,7 +143,7 @@ src/components/<ComponentName>/
 ### `ci.yml` — runs on every pull request to `dev` or `main`
 
 1. Checkout code
-2. Set up Node 20
+2. Set up Node 22
 3. `pnpm install --frozen-lockfile`
 4. `pnpm lint` — fails on any ESLint error
 5. `pnpm format:check` — fails if any file is not Prettier-formatted
@@ -153,7 +153,7 @@ src/components/<ComponentName>/
 ### `deploy.yml` — runs on push to `main`
 
 1. Same steps as `ci.yml`
-2. `npx webflow library share --no-input --api-token $WEBFLOW_API_TOKEN` — publishes using the token from GitHub Secrets
+2. `npx webflow devlink import --no-input --api-token $WEBFLOW_API_TOKEN` — publishes using the token from GitHub Secrets
 3. If the deploy step fails: workflow is marked failed, GitHub notifies the commit author
 
 ---
